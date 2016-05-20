@@ -11,13 +11,14 @@ public class AnimatedSprite extends Sprite {
 	public AnimatedSprite(SpriteSheet sheet, int width, int height, int length) {
 		super(sheet, width, height);
 		this.length = length;
+		sprite = sheet.getSprites()[0];
 		if (length > sheet.getSprites().length) System.err.println("Error: Length of Animation is Too Long");
 	}
 
 	public void update() {
 		time++;
 		if (time % rate == 0) {
-			if (frame > length)
+			if (frame >= length - 1)
 				frame = 0;
 			else
 				frame++;

@@ -16,7 +16,7 @@ public class SpriteSheet {
 	public static SpriteSheet player = new SpriteSheet("/textures/sheets/player.png", 256, 192);
 
 	public static SpriteSheet test = new SpriteSheet(player, 0, 0, 1, 3, 64);
-	
+
 	private Sprite[] sprites;
 
 	public SpriteSheet(SpriteSheet sheet, int x, int y, int width, int height, int spriteSize) {
@@ -38,14 +38,15 @@ public class SpriteSheet {
 				pixels[x0 + y0 * w] = sheet.pixels[xp + yp * sheet.WIDTH];
 			}
 		}
+
 		int frame = 0;
-		for (int ya = 0; ya < h; y++) {
-			for (int xa = 0; xa < w; xa++) {
+		sprites = new Sprite[width * height];
+		for (int ya = 0; ya < height; ya++) {
+			for (int xa = 0; xa < width; xa++) {
 				int[] spritePixels = new int [spriteSize * spriteSize];
-				for (int y0 = 0; y0 < h; y++) {
-					for (int x0 = 0; x0 < w; x0++) {
-						spritePixels[x0 + y0 * spriteSize]  = pixels[(x0 + xa * spriteSize) + (y0 + ya * spriteSize) *width];
-						
+				for (int y0 = 0; y0 < spriteSize; y0++) {
+					for (int x0 = 0; x0 < spriteSize; x0++) {
+						spritePixels[x0 + y0 * spriteSize] = pixels[(x0 + xa * spriteSize) + (y0 + ya * spriteSize) *width];
 					}
 				}
 				Sprite sprite = new Sprite(spritePixels, spriteSize, spriteSize);
